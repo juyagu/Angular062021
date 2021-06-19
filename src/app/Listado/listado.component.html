@@ -10,7 +10,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let pelicula of peliculas">
+        <tr *ngFor="let pelicula of peliculas" (click)="seleccionPelicula(pelicula)">
             <td>{{pelicula.id_pelicula}}</td>
             <td>{{pelicula.titulo}}</td>
             <td>{{pelicula.direccion}}</td>
@@ -19,3 +19,8 @@
         </tr>
     </tbody>
 </table>
+ 
+<div *ngIf="peliculaSeleccionada.id_pelicula > 0">
+    <hr>
+    <app-detalle [pelicula]="peliculaSeleccionada"></app-detalle>
+</div>

@@ -9,4 +9,9 @@ import { Pelicula } from '../entidades/pelicula';
 })
 export class ListadoComponent{
     peliculas:Pelicula[]=PELICULAS;
+    peliculaSeleccionada:Pelicula = {id_pelicula:0,titulo:'',direccion:'',genero:'',foto:''};
+
+    seleccionPelicula(peliculaParam:Pelicula){
+        this.peliculaSeleccionada = peliculaParam;
+    }
 }
