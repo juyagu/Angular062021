@@ -5,12 +5,14 @@ import { AppComponent } from './app.component';
 import { ListadoComponent } from './Listado/listado.component';
 import { DetalleComponent } from './detalle/detalle.component';
 import { FormsModule } from '@angular/forms';
+import { ReactivoComponent } from './reactivo/reactivo.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ListadoComponent,
-    DetalleComponent
+    DetalleComponent,
+    ReactivoComponent
   ],
   imports: [
     BrowserModule,
