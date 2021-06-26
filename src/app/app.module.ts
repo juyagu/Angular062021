@@ -7,6 +7,8 @@ import { DetalleComponent } from './detalle/detalle.component';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ReactivoComponent } from './reactivo/reactivo.component';
+import { HttpClientModule } from '@angular/common/http';
+//import { EjemploService } from './servicios/ejemplo.service';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,8 @@ import { ReactivoComponent } from './reactivo/reactivo.component';
   imports: [
     BrowserModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
