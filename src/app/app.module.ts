@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { ListadoComponent } from './Listado/listado.component';
 import { DetalleComponent } from './detalle/detalle.component';
 import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { ReactivoComponent } from './reactivo/reactivo.component';
 
 @NgModule({
@@ -16,7 +17,8 @@ import { ReactivoComponent } from './reactivo/reactivo.component';
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
