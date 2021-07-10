@@ -1,14 +1,14 @@
 <h3>Detalle Película</h3>
-<form class="row g-3" #peliForm="ngForm">
+<form class="row g-3" #peliForm="ngForm" (ngSubmit)="actualizarPelicula()">
     <div class="col-md-4">
       <label for="validationDefault01" class="form-label">Titulo</label>
-      <input type="text" class="form-control" [ngClass]="{'is-invalid': titulo.invalid && titulo.touched}" id="tituloPelicula" name="titulo" [(ngModel)]="pelicula.titulo" required minlength="10" #titulo="ngModel">
+      <input type="text" class="form-control" [ngClass]="{'is-invalid': titulo.invalid && titulo.touched}" id="tituloPelicula" name="titulo" [(ngModel)]="pelicula.titulo" required minlength="3" #titulo="ngModel">
         <div id="tituloPeliculaFeedBack" class="invalid-feedback">
             <div *ngIf="titulo.errors?.required">
                 Por favor ingrese un titulo para la película
             </div>
             <div *ngIf="titulo.errors?.minlength">
-                El título debe tener al menos 10 caracteres
+                El título debe tener al menos 3 caracteres
             </div>
         </div>
     </div>
@@ -18,12 +18,14 @@
     </div>-->
     <div class="col-md-4">
       <label for="validationDefault02" class="form-label">Direccion</label>
-      <input type="text" class="form-control" id="validationDefault02" name="direccion" [(ngModel)]="pelicula.direccion" >
+      <input type="text" class="form-control" id="validationDefault02" name="direccion" [(ngModel)]="pelicula.director" >
     </div>
     <div class="col-md-4">
       <label for="validationDefaultUsername" class="form-label">Género</label>
       <div class="input-group">
-        <input type="text" class="form-control" id="validationDefaultUsername"  aria-describedby="inputGroupPrepend2" name="genero" [(ngModel)]="pelicula.genero">
+        <select name="genero" id="" class="form-control" [(ngModel)]="id_genero" (change)="updateObjetoPeli()">
+          <option *ngFor="let genero of generos" [value]="genero.id_genero">{{genero.descripcion}}</option>
+        </select>
       </div>
     </div>
     <div class="col-md-4">

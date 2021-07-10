@@ -11,7 +11,7 @@ import { PeliculaService } from '../servicios/pelicula.service';
     providers: [EjemploService]
 })
 export class ListadoComponent implements OnInit{
-    peliculaSeleccionada:Pelicula = {id_pelicula:0,titulo:'',direccion:'',genero:'',foto:''};
+    peliculaSeleccionada:Pelicula = {id_pelicula:0,titulo:'',director:'',genero:'',foto:''};
     peliculas:Pelicula[] = [];
 
     //servicioEjemplo = new EjemploService();
@@ -30,7 +30,9 @@ export class ListadoComponent implements OnInit{
     }
     
     obtenerPeliculas(){
-        this.peliculas = this.servicioPelicula.getPeliculas();
+        //this.peliculas = this.servicioPelicula.getPeliculas();
+        this.servicioPelicula.getPeliculas()
+            .subscribe(data => this.peliculas = data)
     }
 
     seleccionPelicula(peliculaParam:Pelicula){
@@ -38,7 +40,7 @@ export class ListadoComponent implements OnInit{
     }
 
     modificarPelicula(){
-        this.servicioPelicula.modificarPelicula(55);
+        //this.servicioPelicula.modificarPelicula(55);
     }
 
 

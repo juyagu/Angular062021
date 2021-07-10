@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Pelicula } from '../entidades/pelicula';
+import { Genero } from '../entidades/genero';
+import { PeliculaService } from '../servicios/pelicula.service';
 
 @Component({
   selector: 'app-detalle',
@@ -9,12 +11,30 @@ import { Pelicula } from '../entidades/pelicula';
 export class DetalleComponent implements OnInit {
 
   @Input()
-  pelicula:Pelicula= {id_pelicula:0,titulo:'',direccion:'',genero:'',foto:''};
+  pelicula:Pelicula= {id_pelicula:0,titulo:'',director:'',genero:'',foto:''};
   
-  constructor() { }
+  generos:Genero[] = [];
+  id_genero:number = 1;
+
+  constructor(private svcPelicula:PeliculaService) { }
 
   ngOnInit(): void {
-    this.pelicula.titulo = '';
+   // this.pelicula.titulo = '';
+   this.getGeneros();
+  }
+
+  getGeneros(){
+    this.svcPelicula.obtenerGeneros()
+      .subscribe(data => this.generos = data);
+  }
+  updateObjetoPeli(){
+    this.pelicula.id_genero = this.id_genero;
+  }
+
+  actualizarPelicula(){
+    this.pelicula.id_genero = Number(this.id_genero)
+    this.svcPelicula.modificarPelicula(this.pelicula)
+      .subscribe(data => console.log(data))
   }
 
 
