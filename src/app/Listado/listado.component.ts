@@ -4,6 +4,7 @@ import { PELICULAS } from '../mock-peliculas';
 import { Pelicula } from '../entidades/pelicula';
 import { EjemploService } from '../servicios/ejemplo.service';
 import { PeliculaService } from '../servicios/pelicula.service';
+import { Router } from '@angular/router'; 
 
 @Component({
     selector: 'app-listado',
@@ -11,8 +12,10 @@ import { PeliculaService } from '../servicios/pelicula.service';
     providers: [EjemploService]
 })
 export class ListadoComponent implements OnInit{
-    peliculaSeleccionada:Pelicula = {id_pelicula:0,titulo:'',director:'',genero:'',foto:''};
+    //peliculaSeleccionada:Pelicula = {id_pelicula:0,titulo:'',director:'',genero:'',foto:''};
+    peliculaSeleccionada:number=0;
     peliculas:Pelicula[] = [];
+    mensaje:string='';
 
     //servicioEjemplo = new EjemploService();
 
@@ -22,21 +25,31 @@ export class ListadoComponent implements OnInit{
         private servicioPelicula:PeliculaService = new PeliculaService();
         
     */
-    constructor(private svcEjemplo: EjemploService, private servicioPelicula:PeliculaService){}
+    constructor(private svcEjemplo: EjemploService, private servicioPelicula:PeliculaService,private router: Router){}
     
     //peliculas:Pelicula[]=PELICULAS;
     ngOnInit(){
         this.obtenerPeliculas();
+        if(localStorage.getItem('mensaje') !== null){
+            this.mensaje = localStorage.getItem('mensaje') || '';
+            localStorage.removeItem('mensaje');
+        }
     }
     
     obtenerPeliculas(){
         //this.peliculas = this.servicioPelicula.getPeliculas();
-        this.servicioPelicula.getPeliculas()
+        try{
+            this.servicioPelicula.getPeliculas()
             .subscribe(data => this.peliculas = data)
+        }catch(err){
+            console.log(err)
+        }
+        
     }
 
-    seleccionPelicula(peliculaParam:Pelicula){
-        this.peliculaSeleccionada = peliculaParam;
+    seleccionPelicula(peliculaParam:number){
+        //this.peliculaSeleccionada = peliculaParam;
+        this.router.navigate(['/detalle/'+ peliculaParam])
     }
 
     modificarPelicula(){

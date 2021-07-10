@@ -1,4 +1,7 @@
 <h1>Listado de Películas</h1>
+<div class="alert alert-success" role="alert" *ngIf="mensaje !== ''">
+    La pelicula fue modificada correctamente
+</div>
 <table class="table table-bordered table-hover">
     <thead>
         <tr>
@@ -10,7 +13,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let pelicula of peliculas" (click)="seleccionPelicula(pelicula)">
+        <tr *ngFor="let pelicula of peliculas" (click)="seleccionPelicula(pelicula.id_pelicula)">
             <td>{{pelicula.id_pelicula}}</td>
             <td>{{pelicula.titulo}}</td>
             <td>{{pelicula.director}}</td>
@@ -20,7 +23,7 @@
     </tbody>
 </table>
  
-<div *ngIf="peliculaSeleccionada.id_pelicula > 0">
+<!--<div *ngIf="peliculaSeleccionada.id_pelicula > 0">
     <hr>
     <app-detalle [pelicula]="peliculaSeleccionada"></app-detalle>
-</div>
+</div>-->
